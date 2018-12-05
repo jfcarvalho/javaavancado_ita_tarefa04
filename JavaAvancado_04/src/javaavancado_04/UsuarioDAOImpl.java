@@ -106,7 +106,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
     @Override
     public void adicionarPontos(String login, int pontos) {
         try{
-            Connection c = DriverManager.getConnection("jdbc:mysql://localhost/coursera", "root", "root");
+            Connection c = DriverManager.getConnection("jdbc:mysql://localhost/coursera?autoReconnect=true&useSSL=false", "root", "root");
             String sql = "UPDATE usuario SET pontos = pontos + ? WHERE login = ?;";
             PreparedStatement stm = c.prepareStatement(sql);
             stm.setInt(1, pontos);
@@ -119,4 +119,26 @@ public class UsuarioDAOImpl implements UsuarioDAO {
        }
       }
     
+    @Override
+    public String autenticar(String login, String senha) throws Exception {
+          try{
+                Connection c = DriverManager.getConnection("jdbc:mysql://localhost/coursera", "root", "root");
+                String sql = "SELECT nome FROM coursera.usuario WHERE login = ? and senha = ?;";
+                PreparedStatement ps = c.prepareStatement(sql);
+                ps.setString(1, login);
+                ps.setString(2, senha);
+                ResultSet rs = ps.executeQuery();
+            if(rs.next())
+            {
+                return rs.getString("nome");                    
+            }
+            
+         }
+          catch(SQLException e){
+           //TODO Autopgenerated catch block
+           throw new RuntimeException("Não foi possível executar o acesso", e);
+       }
+          
+          return null;
+    }  
 }

@@ -27,4 +27,6 @@ public interface UsuarioDAO {
    //retorna a lista de usuários ordenada por pontos (maior primeiro)
    public List<Usuario> ranking();
 
+   public String autenticar(String login, String senha) throws Exception;
+   
 }
