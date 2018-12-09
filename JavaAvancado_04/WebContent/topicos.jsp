@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,13 +18,20 @@
 <th> Usuário criador</th>
 </tr>
 
+<c:forEach items="${topicos}" var="topico">
 <tr>
-<th>a</th>
-<th>b</th>
-
+<td><a href="visualizarTopico?id=${topico.getId_topico()}">${topico.getTitulo()}</a></td>
+<td>${topico.getUsuario().getLogin()}</td>
 </tr>
+
+</c:forEach>
 	
 </table>
+
+<br>
+
+<span><a href="cadastroTopico.jsp">Incluir novo tópico</a></span> |
+<span><a href="Ranking">Ranking de Usuários</a></span>
 
 </body>
 </html>

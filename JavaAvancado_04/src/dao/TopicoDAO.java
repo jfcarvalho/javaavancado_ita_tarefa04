@@ -1,7 +1,9 @@
-package javaavancado_04;
+package dao;
 
 
 import java.util.List;
+
+import model.Topico;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,11 +23,8 @@ public interface TopicoDAO {
    //retorna a lista de usuários ordenada por pontos (maior primeiro)
    public List<Topico> topicos();
    
+   public Topico recuperarTopico(int id);
    
- //insere um novo usuário no banco de dados
-   public void inserirComentario(Comentario co);
    
-   //retorna a lista de usuários ordenada por pontos (maior primeiro)
-   public List<Comentario> comentarios();
    
 }

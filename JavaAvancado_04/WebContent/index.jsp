@@ -23,5 +23,7 @@
         </div>
         
         <div>Para cadastrar o usuário, clique <a href="/Javaavancado04/cadastroUsuario.jsp">aqui</a> </div>
+   	<br>
+   	<div>${erro}</div>
     </body>
 </html>

@@ -1,4 +1,4 @@
-package javaavancado_04;
+package model;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,10 +10,11 @@ package javaavancado_04;
  * @author nessk
  */
 public class Topico {
+	private int id_topico;
     private String titulo;
     private String conteudo;
-    private String criador;
-    private int numero;
+    private Usuario usuario;
+   
     
 	public String getTitulo() {
 		return titulo;
@@ -27,17 +28,18 @@ public class Topico {
 	public void setConteudo(String conteudo) {
 		this.conteudo = conteudo;
 	}
-	public String getCriador() {
-		return criador;
+	
+	public Usuario getUsuario() {
+		return usuario;
 	}
-	public void setCriador(String criador) {
-		this.criador = criador;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
-	public int getNumero() {
-		return numero;
+	public int getId_topico() {
+		return id_topico;
 	}
-	public void setNumero(int numero) {
-		this.numero = numero;
+	public void setId_topico(int id_topico) {
+		this.id_topico = id_topico;
 	}
     
     /**

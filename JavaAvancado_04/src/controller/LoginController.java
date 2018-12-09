@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javaavancado_04;
+package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,13 +14,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import dao.UsuarioDAO;
+import dao.UsuarioDAOImpl;
 
 /**
  *
  * @author nessk
  */
-@WebServlet(urlPatterns = {"/CadastroUsuarioController"})
-public class CadastroUsuarioController extends HttpServlet {
+@WebServlet(urlPatterns = {"/LoginController"})
+public class LoginController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -74,26 +78,30 @@ public class CadastroUsuarioController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Usuario newuser = new Usuario();
-    	String nome = request.getParameter("nome");
         String login = request.getParameter("login");
-        String email = request.getParameter("email");
         String senha = request.getParameter("senha");
-        
-        newuser.setEmail(email);
-        newuser.setLogin(login);
-        newuser.setNome(nome);
-        newuser.setSenha(senha);
-        newuser.setPontos(0);
-        
-        
         UsuarioDAO u = new UsuarioDAOImpl();
-        u.inserir(newuser);
-        response.sendRedirect("index.jsp");
-        
-    } 
-        
-	
+         String nome = new String();
+         
+        try {
+             nome = u.autenticar(login, senha);
+             if(nome != null)
+             {
+            	 HttpSession sessao = request.getSession();
+                 sessao.setAttribute("login_usuario", login);
+                 sessao.setAttribute("nome_usuario", nome);
+            	 response.sendRedirect("/Javaavancado04/listarTopicos");
+             }
+             else
+             {
+	             request.setAttribute("erro", "Erro nas credenciais: login e/ou senha inválido(s)");
+	             request.getRequestDispatcher("index.jsp").forward(request, response);
+             }
+        } catch (Exception ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     /**
      * Returns a short description of the servlet.
      *

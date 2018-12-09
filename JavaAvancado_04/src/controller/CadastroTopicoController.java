@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javaavancado_04;
+package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,12 +16,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.TopicoDAO;
+import dao.TopicoDAOImpl;
+import dao.UsuarioDAO;
+import dao.UsuarioDAOImpl;
+import model.Topico;
+
 /**
  *
  * @author nessk
  */
-@WebServlet(urlPatterns = {"/LoginController"})
-public class LoginController extends HttpServlet {
+@WebServlet(urlPatterns = {"/CadastroTopicoController"})
+public class CadastroTopicoController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -75,24 +81,35 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String login = request.getParameter("login");
-        String senha = request.getParameter("senha");
-        UsuarioDAO u = new UsuarioDAOImpl();
-         String nome = new String();
-         
+        String titulo = request.getParameter("titulo");
+        String conteudo = request.getParameter("conteudo");
+        HttpSession sessao = request.getSession();
+        String login = (String) sessao.getAttribute("login_usuario");
+        String nome = (String) sessao.getAttribute("nome_usuario");
+        Topico t = new Topico();
+        UsuarioDAO us = new UsuarioDAOImpl();
+        
+        t.setTitulo(titulo);
+        t.setUsuario(us.recuperar(login));
+        t.setConteudo(conteudo);
+        TopicoDAO td = new TopicoDAOImpl();
+        td.inserir(t);
+       // us.adicionarPontos(login, 10);
+        
+        response.sendRedirect("listarTopicos");
+     //    String nome = new String();
+       /*  
         try {
              nome = u.autenticar(login, senha);
              if(nome != null)
              {
-            	 HttpSession sessao = request.getSession();
-                 sessao.setAttribute("login_usuario", login);
-                 sessao.setAttribute("nome_usuario", nome);
             	 response.sendRedirect("topicos.jsp");
              }
         
         } catch (Exception ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CadastroTopicoController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    */
     }
 
     /**

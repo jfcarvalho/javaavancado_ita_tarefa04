@@ -1,0 +1,8 @@
+<dataset>
+	<USUARIO LOGIN="alex.silva" EMAIL="alex.silva@solutis.com.br" NOME="Alex Silva" SENHA="alex.silva" PONTOS="100" /> 
+	<USUARIO LOGIN="edjane.paim" EMAIL="edjane.paim@solutis.com.br" NOME="Edjane Paim" SENHA="edjane" PONTOS="100" /> 
+	<USUARIO LOGIN="gitirana" EMAIL="gitirana@solutis.com.br" NOME="Alexandre Gitirana" SENHA="gitirana" PONTOS="100" /> 
+	<USUARIO LOGIN="jean.carvalho" EMAIL="jean.carvalho@solutis.com.br" NOME="Jean Carvalho" SENHA="jfcarvalho" PONTOS="100" /> 
+	<USUARIO LOGIN="marcos.lazaro" EMAIL="marcos.lazaro@solutis.com.br" NOME="Marcos Lázaro" SENHA="marcos" PONTOS="100" /> 
+	<USUARIO LOGIN="yuri.cesar" EMAIL="yuri.cesar@solutis.com.br" NOME="Yuri Cesar" SENHA="yuri" PONTOS="100" /> 
+</dataset>

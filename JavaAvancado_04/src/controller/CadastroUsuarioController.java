@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javaavancado_04;
+package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,14 +14,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import dao.UsuarioDAO;
+import dao.UsuarioDAOImpl;
+import model.Usuario;
 
 /**
  *
  * @author nessk
  */
-@WebServlet(urlPatterns = {"/CadastroTopicoController"})
-public class CadastroTopicoController extends HttpServlet {
+@WebServlet(urlPatterns = {"/CadastroUsuarioController"})
+public class CadastroUsuarioController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -75,37 +78,26 @@ public class CadastroTopicoController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String titulo = request.getParameter("titulo");
-        String conteudo = request.getParameter("conteudo");
-        HttpSession sessao = request.getSession();
-        String login = (String) sessao.getAttribute("login_usuario");
-        String nome = (String) sessao.getAttribute("nome_usuario");
-        Topico t = new Topico();
+        Usuario newuser = new Usuario();
+    	String nome = request.getParameter("nome");
+        String login = request.getParameter("login");
+        String email = request.getParameter("email");
+        String senha = request.getParameter("senha");
         
-        t.setTitulo(titulo);
-        t.setCriador(nome);
-        t.setConteudo(conteudo);
-        TopicoDAO td = new TopicoDAOImpl();
-        td.inserir(t);
-        UsuarioDAO us = new UsuarioDAOImpl();
-        us.adicionarPontos(login, 10);
+        newuser.setEmail(email);
+        newuser.setLogin(login);
+        newuser.setNome(nome);
+        newuser.setSenha(senha);
+        newuser.setPontos(0);
         
-        response.sendRedirect("topicos.jsp");
-     //    String nome = new String();
-       /*  
-        try {
-             nome = u.autenticar(login, senha);
-             if(nome != null)
-             {
-            	 response.sendRedirect("topicos.jsp");
-             }
         
-        } catch (Exception ex) {
-            Logger.getLogger(CadastroTopicoController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    */
-    }
-
+        UsuarioDAO u = new UsuarioDAOImpl();
+        u.inserir(newuser);
+        response.sendRedirect("index.jsp");
+        
+    } 
+        
+	
     /**
      * Returns a short description of the servlet.
      *

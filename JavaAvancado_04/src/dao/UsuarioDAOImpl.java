@@ -1,4 +1,4 @@
-package javaavancado_04;
+package dao;
 
 
 import java.sql.Connection;
@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import model.Usuario;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -47,6 +49,9 @@ public class UsuarioDAOImpl implements UsuarioDAO {
                 u.setLogin(rs.getString("login"));
                 u.setNome(rs.getString("nome"));
                 u.setEmail(rs.getString("email"));
+               System.out.println(rs.getInt("pontos"));
+                u.setPontos(rs.getInt("pontos"));
+               
                 todos.add(u);
             }
         } catch(SQLException e) {

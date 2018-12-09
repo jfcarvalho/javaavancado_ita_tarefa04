@@ -1,7 +1,9 @@
-package javaavancado_04;
+package dao;
 
 
 import java.util.List;
+
+import model.Usuario;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
