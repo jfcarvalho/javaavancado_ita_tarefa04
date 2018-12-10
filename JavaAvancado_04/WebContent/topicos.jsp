@@ -21,7 +21,7 @@
 <c:forEach items="${topicos}" var="topico">
 <tr>
 <td><a href="visualizarTopico?id=${topico.getId_topico()}">${topico.getTitulo()}</a></td>
-<td>${topico.getUsuario().getLogin()}</td>
+<td>${topico.getUsuario().getNome()}</td>
 </tr>
 
 </c:forEach>

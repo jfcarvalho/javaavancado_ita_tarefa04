@@ -13,7 +13,7 @@
 <form method="POST" action="CadastroTopicoController">
 	<label>Titulo: </label><input type="text" name="titulo"/>
 	<br>
-	<label>Conteudo: </label><input type="text" name="conteudo"/>
+	<label>Conteudo: </label><textarea name="conteudo"></textarea>
 	<br>
 	
 	<input type="submit" value="Cadastrar Topico"/>

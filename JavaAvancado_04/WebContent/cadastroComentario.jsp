@@ -12,11 +12,11 @@
 
 <form method="POST" action="CadastroComentario">
 	
-	<label>Conteudo: </label><input type="text" name="comentario"/>
+	<label>Conteudo: </label><textarea name="comentario"></textarea>
 	<input type="hidden" name="id_topico" value="${topico.getId_topico()}"/>
 	<br>
 	
-	<input type="submit" value="Cadastrar Topico"/>
+	<input type="submit" value="Cadastrar Comentario"/>
 	
 </form>
 

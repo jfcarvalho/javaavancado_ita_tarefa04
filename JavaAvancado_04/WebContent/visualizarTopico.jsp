@@ -19,7 +19,7 @@
 <td> Título do tópico: ${topico.getTitulo()} </td>
 </tr>
 <tr>
-<td> Usuário criador: ${topico.getUsuario().getLogin()}</td>
+<td> Usuário criador: ${topico.getUsuario().getNome()}</td>
 <tr>
 <td> Conteúdo: ${topico.getConteudo()} </td>
 </tr>
@@ -44,6 +44,7 @@
 <br>
 
 <span><a href="CadastroComentario?id_topico=${topico.getId_topico()}&login=${usuario.getLogin()}">Incluir novo comentario</a></span>
+<span><a href="listarTopicos">Voltar para tópicos</a></span>
 
 </body>
 </html>

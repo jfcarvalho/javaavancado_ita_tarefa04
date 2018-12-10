@@ -11,6 +11,7 @@
 <title>Exibindo Ranking</title>
 
 </head>
+
 <body>
 <h3>Ranking de Usuários por pontuaçãos</h3>
 
@@ -23,5 +24,7 @@
 
 </c:forEach>
 </ol>
+
+<span><a href="listarTopicos">Voltar para tópicos</a></span>
 
 </body>
